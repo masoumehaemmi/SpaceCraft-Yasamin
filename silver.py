@@ -3,6 +3,7 @@ import random
 import time
 import arcade
 
+
 class Enemy(arcade.Sprite):
     def __init__(self, w, h):
         super().__init__(":resources:images/space_shooter/playerShip1_green.png")
@@ -48,20 +49,25 @@ class SpaceCraft(arcade.Sprite):
     def fire(self):
         self.bullet_list.append(Bullet(self))
 
-class FlyingSprite(arcade.Sprite):
+# class FlyingSprite(arcade.Sprite):
 
-    def update(self):
-        super().update()
+#     def update(self):
+#         super().update()
 
-        if self.up < 0:
-            self.remove_from_sprite_lists()
+#         if self.up < 0:
+#             self.remove_from_sprite_lists()
 
-    def add_cloud(self, delta_time: float):
+def add_enemy(self, delta_time: float):
+
+    enemy = (":resources:images/space_shooter/playerShip1_green.png")
+
+
+def add_cloud(self, delta_time: float):
    
-        cloud = FlyingSprite("images/cloud.png", )
-        cloud.left = random.randint(self.width, self.width + 80)
-        cloud.top = random.randint(10, self.height - 10)
-        cloud.velocity = (random.randint(-5, -2), 0)
+    cloud = ("OIP.jpg" )
+    cloud.left = random.randint(self.width, self.width + 80)
+    cloud.top = random.randint(10, self.height - 10)
+    cloud.velocity = (random.randint(-5, -2), 0)
 
         
 class Game(arcade.Window):
@@ -75,8 +81,8 @@ class Game(arcade.Window):
         self.enemy_list =[]
         self.cloud_list=[]
         #self.start_time = time.time()
-        arcade.schedule(self.enemy_list,4)
-        arcade.schedule(self.cloud_list, 1.5)
+        arcade.schedule(add_enemy,4)
+        arcade.schedule(add_cloud, 1.5)
     def on_draw(self):
         arcade.start_render()
         arcade.draw_lrwh_rectangle_textured(0, 0,self.w,self.h, self.background_image)
@@ -109,7 +115,7 @@ class Game(arcade.Window):
             self.enemy_list[i].move()
 
         for i in range(len(self.cloud_list)):
-            self.cloud_list[i].draw()
+            self.cloud_list[i].move()
 
         for b in self.enemy_list:
             for e in self.me.bullet_list:
