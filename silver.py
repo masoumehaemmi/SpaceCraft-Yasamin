@@ -73,18 +73,18 @@ class Game(arcade.Window):
         #self.start_time = time.time()
     def add_enemy(self, delta_time: float):    
 
-        enemy = arcade.Sprite(":resources:images/space_shooter/playerShip1_green.png")
-        enemy.left = random.randint(self.width, self.width + 80)
-        enemy.top = random.randint(10, self.height - 10)
+        self.enemy = arcade.Sprite(":resources:images/space_shooter/playerShip1_green.png")
+        self.center_x = 48
+        self.center_y = 48
 
 
     def add_cloud(self, delta_time: float):
    
         self.cloud = ("OIP.jpg" )
-        self.width = 48
-        self.height = 48
-        self.center_x =random.randint(self.width,self.width + 30)
-        self.center_y =random.randint(10, 10)
+        self.width = 5
+        self.height = 5
+        self.center_x = 42
+        self.center_y = 42
 
         
     def on_draw(self):
@@ -110,6 +110,7 @@ class Game(arcade.Window):
         self.enemy_list.append(Enemy(self.w , self.h))
         #     self.start_time = time.time()
         arcade.schedule(self.add_enemy,4)
+        
         arcade.schedule(self.add_cloud, 1.5)
         self.me.rotate()
     
