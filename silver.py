@@ -57,32 +57,36 @@ class SpaceCraft(arcade.Sprite):
 #         if self.up < 0:
 #             self.remove_from_sprite_lists()
 
-def add_enemy(self, delta_time: float):
 
-    enemy = (":resources:images/space_shooter/playerShip1_green.png")
-
-
-def add_cloud(self, delta_time: float):
-   
-    cloud = ("OIP.jpg" )
-    cloud.left = random.randint(self.width, self.width + 80)
-    cloud.top = random.randint(10, self.height - 10)
-    cloud.velocity = (random.randint(-5, -2), 0)
 
         
 class Game(arcade.Window):
     def __init__(self):
         self.w = 800
         self.h = 600
-        super().__init__(width=self.w,height=self.h,title="silver SpaceCraft")
+        super().__init__(width=self.w,height=self.h,title="silver SpaceCraft YASAMIN")
         arcade.set_background_color(arcade.color.BLACK)
         self.background_image=arcade.load_texture(":resources:images/backgrounds/abstract_1.jpg")
         self.me = SpaceCraft(self.w, self.h)
         self.enemy_list =[]
         self.cloud_list=[]
         #self.start_time = time.time()
-        arcade.schedule(add_enemy,4)
-        arcade.schedule(add_cloud, 1.5)
+    def add_enemy(self, delta_time: float):    
+
+        enemy = arcade.Sprite(":resources:images/space_shooter/playerShip1_green.png")
+        enemy.left = random.randint(self.width, self.width + 80)
+        enemy.top = random.randint(10, self.height - 10)
+
+
+    def add_cloud(self, delta_time: float):
+   
+        self.cloud = ("OIP.jpg" )
+        self.width = 48
+        self.height = 48
+        self.center_x =random.randint(self.width,self.width + 30)
+        self.center_y =random.randint(10, 10)
+
+        
     def on_draw(self):
         arcade.start_render()
         arcade.draw_lrwh_rectangle_textured(0, 0,self.w,self.h, self.background_image)
@@ -105,7 +109,8 @@ class Game(arcade.Window):
 
         self.enemy_list.append(Enemy(self.w , self.h))
         #     self.start_time = time.time()
-        
+        arcade.schedule(self.add_enemy,4)
+        arcade.schedule(self.add_cloud, 1.5)
         self.me.rotate()
     
         for i in range(len(self.me.bullet_list)):
