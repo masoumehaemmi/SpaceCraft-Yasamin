@@ -78,6 +78,7 @@ class Game(arcade.Window):
         
     def on_draw(self):
         arcade.start_render()
+        
          
         arcade.draw_lrwh_rectangle_textured(0, 0,self.w,self.h, self.background_image)
         self.me.draw()
@@ -95,13 +96,13 @@ class Game(arcade.Window):
     def on_update(self, delta_time):
 
         self.end_time = time.time()
-        r = random.randrange( 0,8, 2)
+        r = random.randrange(2,6,2)
         if self.end_time - self.start_time > r :
 
           self.enemy_list.append(Enemy(self.w , self.h))
           self.start_time = time.time()
         
-        # self.num_enemy =+ 1
+        self.num_enemy =+ 1
         # arcade.schedule(self.num_enemy, 4)
         self.me.rotate()
     
@@ -126,9 +127,9 @@ class Game(arcade.Window):
                     self.enemy_list.remove(enemy)
             
         if self.me.jon <= 0:
-              arcade.draw_text(f"GAME OVER", 350, 300, arcade.color.BLACK, 50)
-              time.sleep(10)
-              exit()    
+            arcade.draw_text('GAME OVER', self.w//2, self.h//2, arcade.color.RED, 50, width=800)
+            time.sleep(10)
+            exit()   
         
    
     def on_key_press(self, key, modifires):
