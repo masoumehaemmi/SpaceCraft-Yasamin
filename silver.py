@@ -13,11 +13,11 @@ class Enemy(arcade.Sprite):
         self.angle = 180
         self.width = 80
         self.height = 80
-
+        
     def move(self):
-        self.center_x -= self.speed * math.sin(self.angle)
-        self.center_y += self.speed * math.cos(self.angle)
-    
+        self.center_x += self.speed * math.cos(self.angle)
+        self.center_y += self.speed * math.sin(self.angle)
+    #arcade.schedule(enemy.center_x,,4)
 class Bullet(arcade.Sprite):
     def __init__(self, host):
         super().__init__(":resources:images/space_shooter/laserRed01.png") 
@@ -25,6 +25,7 @@ class Bullet(arcade.Sprite):
         self.angle = host.angle
         self.center_x = host.center_x
         self.center_y = host.center_y
+        self.bullet_sound = arcade.load_sound(":resources:sounds/lose2.wav")
     
     def move(self):
         angle_rad = math.radians(self.angle)
@@ -42,23 +43,16 @@ class SpaceCraft(arcade.Sprite):
         self.change_angle = 0
         self.bullet_list = [] 
         self.speed = 4
+        self.jon = 3
+        self.score = 0
+        self.bullet_sound = arcade.load_sound(":resources:sounds/lose2.wav")
 
     def rotate(self):
         self.angle += self.change_angle * self.speed
 
     def fire(self):
         self.bullet_list.append(Bullet(self))
-
-# class FlyingSprite(arcade.Sprite):
-
-#     def update(self):
-#         super().update()
-
-#         if self.up < 0:
-#             self.remove_from_sprite_lists()
-
-
-
+        arcade.play_sound(self.bullet_sound)
         
 class Game(arcade.Window):
     def __init__(self):
@@ -68,50 +62,47 @@ class Game(arcade.Window):
         arcade.set_background_color(arcade.color.BLACK)
         self.background_image=arcade.load_texture(":resources:images/backgrounds/abstract_1.jpg")
         self.me = SpaceCraft(self.w, self.h)
+        self.enemy = Enemy (self.w , self.h)
         self.enemy_list =[]
-        self.cloud_list=[]
-        #self.start_time = time.time()
-    def add_enemy(self, delta_time: float):    
+        self.start_time = time.time()
+        self.score = 0
+        self.jon = 3
+        self.num_enemy = 0
+        self.jon_image = arcade.load_texture('R.jpg')
+    # def add_enemy(self, delta_time: float):    
 
-        self.enemy = arcade.Sprite(":resources:images/space_shooter/playerShip1_green.png")
-        self.center_x = 48
-        self.center_y = 48
-
-
-    def add_cloud(self, delta_time: float):
-   
-        self.cloud = ("OIP.jpg" )
-        self.width = 5
-        self.height = 5
-        self.center_x = 42
-        self.center_y = 42
-
+    #     self.enemy = arcade.Sprite(":resources:images/space_shooter/playerShip1_green.png")
+    #     self.center_x = 48
+    #     self.center_y = 48
+        
         
     def on_draw(self):
         arcade.start_render()
+         
         arcade.draw_lrwh_rectangle_textured(0, 0,self.w,self.h, self.background_image)
         self.me.draw()
-
+            
+        
         for i in range(len(self.me.bullet_list)):
             self.me.bullet_list[i].draw()
 
         for i in range(len(self.enemy_list)):
             self.enemy_list[i].draw()
-            
-        for i in range(len(self.cloud_list)):
-            self.cloud_list[i].draw()
+        for i in range(self.me.jon):
+            arcade.draw_lrwh_rectangle_textured(i*40 ,5 ,40 ,40 ,self.jon_image)
+        arcade.draw_text(f"score: {self.score}", 700, 10, arcade.color.WHITE, 14)
     
     def on_update(self, delta_time):
 
-        #self.end_time = time.time()
-        # r = random.randrange( 0, 20, 2)
-        # if self.end_time - self.start_time > r :
+        self.end_time = time.time()
+        r = random.randrange( 0,8, 2)
+        if self.end_time - self.start_time > r :
 
-        self.enemy_list.append(Enemy(self.w , self.h))
-        #     self.start_time = time.time()
-        arcade.schedule(self.add_enemy,4)
+          self.enemy_list.append(Enemy(self.w , self.h))
+          self.start_time = time.time()
         
-        arcade.schedule(self.add_cloud, 1.5)
+        # self.num_enemy =+ 1
+        # arcade.schedule(self.num_enemy, 4)
         self.me.rotate()
     
         for i in range(len(self.me.bullet_list)):
@@ -120,15 +111,26 @@ class Game(arcade.Window):
         for i in range(len(self.enemy_list)):
             self.enemy_list[i].move()
 
-        for i in range(len(self.cloud_list)):
-            self.cloud_list[i].move()
 
-        for b in self.enemy_list:
+        for enemy in self.enemy_list:
             for e in self.me.bullet_list:
-                if arcade.check_for_collision(b,e):
-                    self.enemy_list.remove(b)
+                if arcade.check_for_collision(enemy,e):
+                    self.enemy_list.remove(enemy)
                     self.me.bullet_list.remove(e)
+                    self.score += 1
 
+        for enemy in self.enemy_list:
+            if enemy.center_y <= 0:
+                    self.me.jon -= 1
+                    print(self.jon.imag)
+                    self.enemy_list.remove(enemy)
+            
+        if self.me.jon <= 0:
+              arcade.draw_text(f"GAME OVER", 350, 300, arcade.color.BLACK, 50)
+              time.sleep(10)
+              exit()    
+        
+   
     def on_key_press(self, key, modifires):
         if key ==arcade.key.RIGHT:
             self.me.change_angle = -1
@@ -141,8 +143,8 @@ class Game(arcade.Window):
 
     def on_key_release(self, key, modifiers):
        self.me.change_angle = 0
-
+       
 
 game=Game()
-
+# arcade.schedule(Enemy,4)
 arcade.run()
