@@ -1,5 +1,7 @@
 ![photo_2021-09-15_13-45-58](https://user-images.githubusercontent.com/80619179/133407211-c99e8240-6f72-4d6a-8736-347ffbda5d48.jpg)
+
 #SpaceCraft
+
 :white_check_mark:بر اثر برخورد تیر، سفینه دشمن منهدم شده و منفجر شود
 :white_check_mark: فاصله زمانی بین ورود دشمن‌ها، دقیقا ۵ ثانیه نباشد. به صورت تصادفی گاهی ۴ ثانیه یا ۶ ثانیه یا … باشد.
 :white_check_mark:با خروج هر دشمن یا تیر از صفحه بازی، شی آن از لیست مورد نظر حذف شود.
@@ -8,3 +10,4 @@
 :white_check_mark:با رسیدن هر دشمن به سیاره ما، یک جون از بازیکن کم شود
 :white_check_mark:برای شلیک کردن و برای منفجر شدن هواپیما، صدای مناسب پخش شود.
 ![photo_2021-09-15_13-46-09](https://user-images.githubusercontent.com/80619179/133407273-da59ccc1-16f8-436d-9faa-0952136fa673.jpg)
+![photo_2021-09-14_11-09-37](https://user-images.githubusercontent.com/80619179/133407425-b8b7868f-0376-48e5-8894-50a7326201b4.jpg)
