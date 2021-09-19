@@ -1,4 +1,4 @@
-![photo_2021-09-15_13-45-58](https://user-images.githubusercontent.com/80619179/133407211-c99e8240-6f72-4d6a-8736-347ffbda5d48.jpg)
+![1](https://user-images.githubusercontent.com/80619179/133939377-d3ae3da7-1bd5-4eb9-8504-7bd417b97e43.jpg)
 
 #SpaceCraft
 
@@ -16,6 +16,13 @@
 
 :white_check_mark:برای شلیک کردن و برای منفجر شدن هواپیما، صدای مناسب پخش شود.
 
-![photo_2021-09-15_13-46-09](https://user-images.githubusercontent.com/80619179/133407273-da59ccc1-16f8-436d-9faa-0952136fa673.jpg)
+:white_check_mark: در صورت تمام شدن جون ها، صفحه سیاه شده و پیام GAME OVER چاپ شود
 
-![photo_2021-09-14_11-09-37](https://user-images.githubusercontent.com/80619179/133407425-b8b7868f-0376-48e5-8894-50a7326201b4.jpg)
+:white_check_mark: سرعت دشمن به مرور اندک اندک افزایش پیدا کند
+
+![2](https://user-images.githubusercontent.com/80619179/133939608-26294022-815d-4ec5-98ae-d086192c6711.jpg)
+
+![3](https://user-images.githubusercontent.com/80619179/133939619-3de4ab50-6a6f-4632-834d-26c9753319dc.jpg)
+
+![photo_2021-09-15_13-45-58](https://user-images.githubusercontent.com/80619179/133939686-33b8e676-6f98-4dca-be95-5350c7d61582.jpg)
+
